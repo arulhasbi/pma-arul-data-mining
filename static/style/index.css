@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 10px;
+    box-sizing: border-box;
+}
+
+body {
+    background: #EEF2F7;
+}
+
+.border {
+    border: 2px dashed blue !Important;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav a {
+    font-size: 1.7em;
+    padding-right: 5px !Important;
+    padding-left: 0 !Important;
+    color: #212529;
+}
+
+section > div {
+    height: 70vh !Important;
+    overflow: scroll;
+}
+
+section blockquote > p {
+    margin: 0;
+    font-size: 1.05em;
+}
+
+section .card-text {
+    font-size: 1.2em;
+    margin-bottom: 3.5px;
+}
+
+section a {
+    margin-top: 10px;
+    font-size: 1.2em !Important;
+    font-weight: bold;
+}
+
+footer i {
+    position: relative;
+    bottom: 2px;
+}
+
+footer p {
+    font-size: 1.5em !Important;
+}
+
+header, nav, section, footer {
+    padding-top: 17px;
+    padding-bottom: 17px;
+}
