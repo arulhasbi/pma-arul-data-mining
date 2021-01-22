@@ -18,6 +18,18 @@ def home(request):
     })
 
 """
+to make a summary page
+"""
+def summary(request):
+    return render(request, 'summary.html')
+
+"""
+to make a recommendation page
+"""
+def recommendation(request):
+    return render(request, 'recommendation.html')
+
+"""
 to show list of books in the home page
 """
 def books():
