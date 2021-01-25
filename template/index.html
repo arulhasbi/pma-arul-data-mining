@@ -21,7 +21,7 @@
             <div class="container">
                 <h1 style="font-size: 3em;">
                     Book recommendation platform
-                    <small class="text-muted">with cosine similarity</small>
+                    <small class="text-muted">with user-based collaborative filtering approach</small>
                 </h1>
             </div>
         </header>
@@ -35,45 +35,60 @@
                         <a class="nav-link disabled" href="#">/</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'summary' %}">books summary</a>
+                        <a class="nav-link disabled" href="{% url 'summary' %}">dataset summary</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">/</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">how it works?</a>
                     </li>
                 </ul>
             </div>
         </nav>
         <section>
+            <div id="backdrop"></div>
+            {% load static %}
+            <img id="loadingBar" class="loading-bar" src="{% static 'assets/Wedges-3s-200px.gif' %}">
             <div class="container overflow-auto">
-                <div class="card-columns">
-                    <div class="card bg-primary text-white text-center p-5">
-                        <blockquote class="blockquote mb-0">
-                            <p clas="lead">“In my whole life, I have known no wise people (over a broad subject matter area) who didn’t read all the time – none, zero.”</p>
-                            <footer class="blockquote-footer text-white">
-                                <small>
-                                    <cite title="Source Title">Charlie Munger</cite>
-                                </small>
-                            </footer>
-                        </blockquote>
-                    </div>
+                <!-- <div id="backdrop"></div> -->
+                <p class="h3 mb-4 pl-2">List of users</p>
+                <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">User ID</th>
+                        <th scope="col">Age</th>
+                        <th scope="col"># Of books rated</th>
+                        <th scope="col">Go to recommendation</th>
+                      </tr>
+                    </thead>
+                    <tbody>
                     {% for row in records %}
-                    <div class="card p-4">
-                        <img src="{{ row.Image_URL_L }}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <small style="font-size: 1.1em">{{row.Year_Of_Publication}}</small>
-                            <h5 class="card-title">{{ row.Book_Title }}</h5>
-                            <p class="card-text"><strong>Authored by</strong> {{row.Book_Author}}</p>
-                            <p class="card-text"><strong>Published by</strong> {{row.Publisher}}</p>
-                            <a href="{% url 'recommendation' %}" class="btn btn-primary btn-block">Find similar books</a>
-                        </div>
-                    </div>
+                        <tr>
+                            <td scope="row">{{ row.UserID }}</td>
+                            <td>{{ row.Age }}</td>
+                            <td>{{ row.BooksRated }}</td>
+                            <td>
+                                <a  type="button"
+                                    onclick='document.getElementById("loadingBar").style.display = "block";
+                                    document.getElementById("backdrop").style.display = "block"'
+                                    href="{% url 'recommendation' %}?UID={{row.UserID}}">
+                                    <i class="bi bi-arrow-right-square-fill goto"
+                                    style="font-size: 1.75em; position: relative; bottom: 4.5px;"></i>
+                                </a>
+                            </td>
+                        </tr>
                     {% endfor %}
-                </div>
+                    </tbody>
+                </table>
             </div>
         </section>
         <footer>
             <div class="container">
-                 <p class="lead text-center">
-                    coded with <i class="bi bi-heart-fill"></i> using django and is prepared for data mining - post module assessment. Fakhrul Hasbi MAN191073 &copy; 2021.
-                 </p>
-            </div>
+                <p class="lead text-center">
+                   coded with <i class="bi bi-heart-fill"></i> using django and is prepared for data mining - post module assessment. Fakhrul Hasbi MAN191073 &copy; 2021.
+                </p>
+           </div>
         </footer>
     </body>
     <!-- AmchartJS -->
@@ -88,5 +103,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <!-- Custom AmchartJS -->
     <script>
+        // function showLoadingBar() {
+        //     var x = document.getElementById("loadingBar").style.display = "block";
+        //     if (x.style.display === "none") {
+        //         x.style.display = "block";
+        //     } else {
+        //         x.style.display = "none";
+        //     }
+        // }
     </script>
 </html>

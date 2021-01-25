@@ -22,7 +22,7 @@ from pma_arul_man191073 import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('summmary', views.summary, name='summary'),
+    path('summary', views.summary, name='summary'),
     path('recommendation', views.recommendation, name='recommendation')
 ]
 

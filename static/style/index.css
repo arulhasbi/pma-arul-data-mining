@@ -20,39 +20,43 @@ nav a {
     color: #212529;
 }
 
-section > div {
+section {
+    position: relative !Important;
+}
+
+section > .container {
     height: 70vh !Important;
     overflow: scroll;
+    position: relative !Important
 }
 
-section blockquote > p {
-    margin: 0;
-    font-size: 1.05em;
-    padding-top: 5px;
+#backdrop {
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: 998;
+    backdrop-filter: blur(10px);
+    display: none;
 }
 
-section blockquote > footer {
-    padding-bottom: 0;
+.table th {
+    font-family: 'Poppins';
+    font-weight: 400;
+    font-size: 1.4em !important;
 }
 
-section .card-text {
-    font-size: 1.2em;
-    margin-bottom: 3.5px;
+.table th,
+.table td {
+    font-family: 'Poppins';
+    font-weight: 400;
+    font-size: 1.4em !important;
 }
 
-section a {
-    margin-top: 10px;
-    font-size: 1.2em !Important;
-    font-weight: bold;
-}
-
-section .card-columns {
-    column-gap: 2.5rem;
-}
-
-section .card {
-    box-shadow: 0 6px 15px rgba(36, 37, 38, 0.08);
-    margin-bottom: 2.5rem !Important;
+.table th {
+    font-weight: 500;
 }
 
 footer i {
@@ -67,4 +71,13 @@ footer p {
 header, nav, section, footer {
     padding-top: 17px;
     padding-bottom: 17px;
+}
+
+.loading-bar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 999;
+    transform: translate(-80%, -50%);
+    display: none;
 }
