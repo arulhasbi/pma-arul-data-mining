@@ -73,11 +73,18 @@ header, nav, section, footer {
     padding-bottom: 17px;
 }
 
-.loading-bar {
+#loadingBar {
     position: absolute;
     top: 50%;
     left: 50%;
     z-index: 999;
-    transform: translate(-80%, -50%);
+    transform: translate(-60%, -80%);
     display: none;
+    font-size: 2em;
+}
+
+.loading-bar {
+    width: 150px;
+    display: block;
+    margin: 0 auto;
 }
