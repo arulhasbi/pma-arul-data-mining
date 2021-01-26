@@ -38,8 +38,24 @@
             </div>
         </nav>
         <section>
+            <div class="container overflow-auto">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="h3 mb-4 pl-2">Ratings summary</p>
+                        <div class="viz border">
+                            <div id="figure">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
         <footer>
+            <div class="container">
+                <p class="lead text-center">
+                   coded with <i class="bi bi-heart-fill"></i> using django and is prepared for data mining - post module assessment. Fakhrul Hasbi MAN191073 &copy; 2021.
+                </p>
+           </div>
         </footer>
     </body>
     <!-- AmchartJS -->
@@ -54,5 +70,39 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <!-- Custom AmchartJS -->
     <script>
+        am4core.useTheme(am4themes_dark);
+        am4core.useTheme(am4themes_animated);
+
+        // get data from the payload
+        records = JSON.parse('{{records|safe}}')
+
+        // create chart instance
+        var chart = am4core.create("figure", am4charts.XYChart);
+
+        // add data
+        chart.data = records;
+
+        // create axes
+        var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "BookRating";
+        categoryAxis.renderer.grid.template.location = 0;
+        categoryAxis.renderer.minGridDistance = 30;
+
+        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+        // create series
+        var series = chart.series.push(new am4charts.ColumnSeries());
+        series.dataFields.valueY = "Counts";
+        series.dataFields.categoryX = "BookRating";
+        series.name = "Visits";
+        series.columns.template.tooltipText = "{categoryX}: [bold]{valueY}[/]";
+        series.columns.template.column.cornerRadiusTopLeft = 12;
+        series.columns.template.column.cornerRadiusTopRight = 12;
+        series.columns.template.column.fillOpacity = 0.8;
+        series.columns.template.strokeWidth = 0;
+
+        series.columns.template.adapter.add("fill", function(fill, target) {
+            return chart.colors.getIndex(target.dataItem.index);
+        });
     </script>
 </html>

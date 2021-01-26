@@ -9,6 +9,10 @@ body {
     background: #EEF2F7;
 }
 
+.border {
+    border: 1px dashed blue;
+}
+
 header h1 {
     margin: 0;
 }
@@ -67,4 +71,22 @@ footer p {
 header, nav, section, footer {
     padding-top: 17px;
     padding-bottom: 17px;
+}
+
+.viz {
+    position: relative !Important;
+    background-color: #222222;
+    height: 400px;
+    box-shadow: 0 6px 15px rgba(36, 37, 38, 0.08);
+    border-radius: 20px;
+    border-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#figure {
+    height: 100%;
+    width: 100%;
 }

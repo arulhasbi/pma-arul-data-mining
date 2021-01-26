@@ -21,7 +21,11 @@ def home(request):
 to make a summary page
 """
 def summary(request):
-    return render(request, 'summary.html')
+    # invoke ratings data
+    payload = ratings()
+    return render(request, 'summary.html', {
+        "records": payload["records"]
+    })
 
 """
 to make a recommendation page
@@ -34,24 +38,6 @@ def recommendation(request):
         'records': payload['records'],
         'user_id': param
     })
-
-"""
-to show list of books
-"""
-def books():
-    # read the data path
-    dirname = os.path.dirname(__file__)
-    datapath = os.path.join(dirname, "dataset/books_c.csv")
-    # read the data csv
-    books = pd.read_csv(datapath)
-    # chunk the data for simplicity of application demonstration
-    books_chunked = books.head(30).to_dict("records")
-    # define the payload
-    payload = {
-        "records": books_chunked
-    }
-    # return the payload
-    return payload
 
 """
 to show list of available users in the home page
@@ -99,6 +85,32 @@ def get_recommendation(UserID):
     }
 
     # return the payload
+    return payload
+
+"""
+to get final selected ratings data
+"""
+def ratings():
+    # read the data path
+    dirname = os.path.dirname(__file__)
+    datapath = os.path.join(dirname, "dataset/py_ratings_used.csv")
+    # read the data csv
+    ratings = pd.read_csv(datapath)
+    ratings.drop("Unnamed: 0", axis=1, inplace=True)
+    # get value counts of each of rating scale
+    rating_value_counts = pd.DataFrame(ratings["BookRating"].value_counts())
+    rating_value_counts.reset_index(inplace=True)
+    rating_value_counts.rename(columns={
+        "index": "BookRating",
+        "BookRating": "Counts"
+    }, inplace=True)
+    rating_value_counts_to_records = rating_value_counts.to_dict("records")
+    print(rating_value_counts)
+    # define the payload
+    payload = {
+        "records": json.dumps(rating_value_counts_to_records)
+    }
+
     return payload
 
 """
