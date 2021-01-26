@@ -80,11 +80,12 @@ header, nav, section, footer {
     z-index: 999;
     transform: translate(-60%, -80%);
     display: none;
-    font-size: 2em;
+    font-size: 1.5em;
+    font-family: 'Open Sans';
 }
 
 .loading-bar {
-    width: 150px;
+    width: 140px;
     display: block;
     margin: 0 auto;
 }

@@ -35,13 +35,7 @@
                         <a class="nav-link disabled" href="#">/</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="{% url 'summary' %}">dataset summary</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#">/</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#">how the recommender works?</a>
+                        <a class="nav-link disabled" href="{% url 'summary' %}">viz</a>
                     </li>
                 </ul>
             </div>
@@ -50,11 +44,10 @@
             <div id="backdrop"></div>
             {% load static %}
             <p id="loadingBar" class="lead">
-                <img class="loading-bar" src="{% static 'assets/Wedges-3s-200px.gif' %}">
+                <img class="loading-bar" src="{% static 'assets/Interwind-1s-200px.gif' %}">
                 making the recommendation, please wait.
             </p>
             <div class="container overflow-auto">
-                <!-- <div id="backdrop"></div> -->
                 <p class="h3 mb-4 pl-2">List of users</p>
                 <table class="table table-hover">
                     <thead>
@@ -74,7 +67,7 @@
                             <td>
                                 <a  type="button"
                                     onclick='document.getElementById("loadingBar").style.display = "block";
-                                    document.getElementById("backdrop").style.display = "block"'
+                                    document.getElementById("backdrop").style.display = "block";'
                                     href="{% url 'recommendation' %}?UID={{row.UserID}}">
                                     <i class="bi bi-arrow-right-square-fill goto"
                                     style="font-size: 1.75em; position: relative; bottom: 4.5px;"></i>
